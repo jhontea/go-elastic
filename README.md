@@ -16,7 +16,11 @@ go get -u github.com/kardianos/govendor
 ```
 govendor sync
 ```
-3. Running
+3. Generate swagger documentation
+```
+swag init
+```
+4. Running
 ```
 go run -v main.go
 ```
