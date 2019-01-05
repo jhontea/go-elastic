@@ -1,0 +1,40 @@
+basePath: '{{.BasePath}}'
+definitions:
+  objects.Response:
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+      status:
+        type: string
+    type: object
+host: '{{.Host}}'
+info:
+  contact: {}
+  description: Show Elasticsearch version from url
+  license: {}
+  title: '{{.Title}}'
+  version: '{{.Version}}'
+paths:
+  /v1/elastic/version:
+    get:
+      consumes:
+      - application/json
+      description: Show Elasticsearch version from url
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/objects.Response'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Elasticsearch version
+      tags:
+      - Elastic
+swagger: "2.0"
