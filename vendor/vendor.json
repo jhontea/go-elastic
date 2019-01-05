@@ -1,0 +1,19 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "FrdL1Iz4t5mfznOur7INFN3Ed6c=",
+			"path": "github.com/gin-gonic/gin",
+			"revision": "f67d7a90c4d2e5bdf310a78d7e6a04e3d9aee851",
+			"revisionTime": "2018-12-13T03:20:17Z"
+		},
+		{
+			"checksumSHA1": "Y8Vu2NT4c2ve963fedBxoJyiU6s=",
+			"path": "github.com/gin-gonic/gin/internal/json",
+			"revision": "f67d7a90c4d2e5bdf310a78d7e6a04e3d9aee851",
+			"revisionTime": "2018-12-13T03:20:17Z"
+		}
+	],
+	"rootPath": "github.com/jhontea/go-elastic"
+}
