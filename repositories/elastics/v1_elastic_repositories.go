@@ -1,6 +1,8 @@
 package repositories
 
 import (
+	"os"
+
 	elastic "gopkg.in/olivere/elastic.v6"
 )
 
@@ -15,7 +17,8 @@ func V1ElasticRepositoryHandler(client elastic.Client) V1ElasticRepository {
 
 func (repository *V1ElasticRepository) GetElasticVersion() (string, error) {
 	var result string
-	esversion, err := repository.Client.ElasticsearchVersion("http://127.0.0.1:9200")
+	clientURL := os.Getenv("ELASTIC_CLIENT_URL")
+	esversion, err := repository.Client.ElasticsearchVersion(clientURL)
 
 	if err != nil {
 		return result, err

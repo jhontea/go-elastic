@@ -4,9 +4,9 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	elastic "gopkg.in/olivere/elastic.v6"
 
 	services "github.com/jhontea/go-elastic/services/elastics"
-	elastic "gopkg.in/olivere/elastic.v6"
 )
 
 type V1ElasticController struct {

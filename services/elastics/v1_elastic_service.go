@@ -3,9 +3,11 @@ package services
 import (
 	"net/http"
 
+	elastic "gopkg.in/olivere/elastic.v6"
+
+	"github.com/jhontea/go-elastic/constants"
 	"github.com/jhontea/go-elastic/objects"
 	repositories "github.com/jhontea/go-elastic/repositories/elastics"
-	elastic "gopkg.in/olivere/elastic.v6"
 )
 
 type V1ElasticService struct {
@@ -26,14 +28,14 @@ func (service *V1ElasticService) GetElasticVersion() (objects.Response, error) {
 	if err != nil {
 		response.Code = http.StatusInternalServerError
 		response.Message = err.Error()
-		response.Status = "failed"
+		response.Status = constants.RESPONSE_FAILED
 
 		return response, err
 	}
 
 	response.Code = http.StatusOK
 	response.Message = result
-	response.Status = "success"
+	response.Status = constants.RESPONSE_SUCCESS
 
 	return response, err
 }

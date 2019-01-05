@@ -1,3 +1,4 @@
 refresh.yml
 vendor/*
 !vendor/vendor.json
+.env
