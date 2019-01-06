@@ -18,6 +18,7 @@ func Route() {
 	client := *connections.ElasticInit()
 	controller := elasticController.V1ElasticControllerHandler(client)
 	router.GET("v1/elastic/version", controller.GetElasticVersion)
+	router.GET("v1/elastic/detail", controller.GetById)
 
 	// swagger
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))

@@ -25,8 +25,8 @@ func V1ElasticControllerHandler(client elastic.Client) V1ElasticController {
 // @Summary Elasticsearch version
 // @Description Show Elasticsearch version from url
 // @Tags Elastic
-// @Accept  json
-// @Produce  json
+// @Accept json
+// @Produce json
 // @Success 200 {object} objects.Response
 // @Failure 500 {string} string "Internal Server Error"
 // @Router /v1/elastic/version [get]
@@ -38,4 +38,24 @@ func (controller *V1ElasticController) GetElasticVersion(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, response)
+}
+
+// GetById godoc
+// @Summary Get data by id
+// @Description Show data by id from some index
+// @Tags Elastic
+// @Accept json
+// @Produce json
+// @Param uuid query string false "uuid"
+// @Param index query string false "index"
+// @Success 200 {object} objects.Response
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /v1/elastic/detail [get]
+func (controller *V1ElasticController) GetById(c *gin.Context) {
+	uuid := c.Query("uuid")
+	index := c.Query("index")
+
+	response := controller.ElasticService.GetById(uuid, index)
+
+	c.JSON(200, response)
 }

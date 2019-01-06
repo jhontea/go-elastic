@@ -12,11 +12,40 @@ definitions:
 host: '{{.Host}}'
 info:
   contact: {}
-  description: Show Elasticsearch version from url
+  description: '{{.Description}}'
   license: {}
   title: '{{.Title}}'
   version: '{{.Version}}'
 paths:
+  /v1/elastic/detail:
+    get:
+      consumes:
+      - application/json
+      description: Show data by id from some index
+      parameters:
+      - description: uuid
+        in: query
+        name: uuid
+        type: string
+      - description: index
+        in: query
+        name: index
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/objects.Response'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get data by id
+      tags:
+      - Elastic
   /v1/elastic/version:
     get:
       consumes:

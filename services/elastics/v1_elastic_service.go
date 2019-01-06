@@ -39,3 +39,34 @@ func (service *V1ElasticService) GetElasticVersion() (objects.Response, error) {
 
 	return response, err
 }
+
+func (service *V1ElasticService) GetById(uuid string, index string) objects.ResponseElasticGetResultObject {
+	var response objects.ResponseElasticGetResultObject
+
+	response.Data = &elastic.GetResult{}
+	response.Code = http.StatusUnprocessableEntity
+	response.Status = constants.RESPONSE_FAILED
+
+	if uuid == "" {
+		response.Message = "Uuid required"
+		return response
+	} else if index == "" {
+		response.Message = "Index required"
+		return response
+	}
+
+	result, message, err := service.ElasticRepository.GetById(uuid, index)
+	if err != nil {
+		response.Code = http.StatusInternalServerError
+		response.Message = err.Error()
+
+		return response
+	}
+
+	response.Data = result
+	response.Code = http.StatusOK
+	response.Message = message
+	response.Status = constants.RESPONSE_SUCCESS
+
+	return response
+}
