@@ -54,6 +54,56 @@
                 }
             }
         },
+        "/v1/elastic/field/detail": {
+            "get": {
+                "description": "Show data by field from some index with value",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Elastic"
+                ],
+                "summary": "Get data by field",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "field",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "value",
+                        "name": "value",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "index",
+                        "name": "index",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/objects.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/elastic/version": {
             "get": {
                 "description": "Show Elasticsearch version from url",

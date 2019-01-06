@@ -46,6 +46,39 @@ paths:
       summary: Get data by id
       tags:
       - Elastic
+  /v1/elastic/field/detail:
+    get:
+      consumes:
+      - application/json
+      description: Show data by field from some index with value
+      parameters:
+      - description: field
+        in: query
+        name: field
+        type: string
+      - description: value
+        in: query
+        name: value
+        type: string
+      - description: index
+        in: query
+        name: index
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/objects.Response'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get data by field
+      tags:
+      - Elastic
   /v1/elastic/version:
     get:
       consumes:

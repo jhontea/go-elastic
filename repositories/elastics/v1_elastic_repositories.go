@@ -31,10 +31,26 @@ func (repository *V1ElasticRepository) GetElasticVersion() (string, error) {
 	return result, nil
 }
 
+func (repository *V1ElasticRepository) GetByField(field string, value string, index string) (*elastic.SearchResult, string, error) {
+	termQuery := elastic.NewTermQuery(field, value)
+	searchResult, err := repository.Client.Search().
+		Index(index).
+		Query(termQuery).
+		From(0).Size(10).
+		Pretty(true).
+		Do(context.Background())
+	if err != nil {
+		return nil, err.Error(), err
+	}
+
+	message := fmt.Sprintf("Query took %d milliseconds\n", searchResult.TookInMillis)
+
+	return searchResult, message, err
+}
+
 func (repository *V1ElasticRepository) GetById(uuid string, index string) (*elastic.GetResult, string, error) {
 	var message string
 
-	// Get tweet with specified ID
 	data, err := repository.Client.Get().
 		Index(index).
 		Type("doc").

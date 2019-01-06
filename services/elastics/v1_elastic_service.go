@@ -40,6 +40,35 @@ func (service *V1ElasticService) GetElasticVersion() (objects.Response, error) {
 	return response, err
 }
 
+func (service *V1ElasticService) GetByField(field string, value string, index string) objects.ResponseElasticSearchResultObject {
+	var response objects.ResponseElasticSearchResultObject
+
+	response.Data = &elastic.SearchResult{}
+	response.Code = http.StatusUnprocessableEntity
+	response.Status = constants.RESPONSE_FAILED
+
+	if field == "" {
+		response.Message = "Field required"
+	} else if value == "" {
+		response.Message = "Value required"
+	} else if index == "" {
+		response.Message = "Index required"
+	}
+
+	result, message, err := service.ElasticRepository.GetByField(field, value, index)
+	if err != nil {
+		response.Code = http.StatusInternalServerError
+		response.Message = err.Error()
+	}
+
+	response.Data = result
+	response.Code = http.StatusOK
+	response.Message = message
+	response.Status = constants.RESPONSE_SUCCESS
+
+	return response
+}
+
 func (service *V1ElasticService) GetById(uuid string, index string) objects.ResponseElasticGetResultObject {
 	var response objects.ResponseElasticGetResultObject
 

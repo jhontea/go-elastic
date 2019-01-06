@@ -40,6 +40,28 @@ func (controller *V1ElasticController) GetElasticVersion(c *gin.Context) {
 	c.JSON(http.StatusOK, response)
 }
 
+// GetByField godoc
+// @Summary Get data by field
+// @Description Show data by field from some index with value
+// @Tags Elastic
+// @Accept json
+// @Produce json
+// @Param field query string false "field"
+// @Param value query string false "value"
+// @Param index query string false "index"
+// @Success 200 {object} objects.Response
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /v1/elastic/field/detail [get]
+func (controller *V1ElasticController) GetByField(c *gin.Context) {
+	field := c.Query("field")
+	value := c.Query("value")
+	index := c.Query("index")
+
+	response := controller.ElasticService.GetByField(field, value, index)
+
+	c.JSON(200, response)
+}
+
 // GetById godoc
 // @Summary Get data by id
 // @Description Show data by id from some index
