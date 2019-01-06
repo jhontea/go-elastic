@@ -15,6 +15,12 @@
 			"revisionTime": "2018-12-13T03:20:17Z"
 		},
 		{
+			"checksumSHA1": "I+g5iffd0bNDiI8swxzsHiJxBz0=",
+			"path": "github.com/joho/godotenv",
+			"revision": "69ed1d913aa885da390dd6de9febf063d101b097",
+			"revisionTime": "2018-11-20T19:47:48Z"
+		},
+		{
 			"checksumSHA1": "nZQgTsgShquBO3GYiJx71yxe7y0=",
 			"path": "github.com/swaggo/gin-swagger",
 			"revision": "6f4fdc3ec4545d77ce9f36016e2f2bc7356a356c",
